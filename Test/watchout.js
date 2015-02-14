@@ -51,10 +51,10 @@ function collisionDetection(enemy) {
     .select('span')
     .html(currentScore);
     if(tempScore>highScore){
-      highscore = tempScore;
+      highScore = tempScore;
       d3.select('.high')
         .select('span')
-        .html(tempScore);
+        .html(highScore);
     }
     //set the game the score to 0
     //update high score if necessary
@@ -76,8 +76,8 @@ function tweenWithCollisionDetection (enemiesData) {
 }
 
 function update(){
-      enemies.transition().duration(1400)
-      .tween('custom', tweenWithCollisionDetection)
+      enemies.transition().duration(2000)
+      .tween('custom', tweenWithCollisionDetection);
 }
 
 setInterval(function(){update()},2000);
