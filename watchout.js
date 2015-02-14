@@ -14,3 +14,18 @@ var enemies = gameBoard.selectAll(".enemies")
                   .attr("cy", function(d) {return 400 * Math.random();})
                   .attr("r",20)
                   .attr("fill","blue");
+
+function update(){
+  enemies.transition()
+      .duration(500)
+      .attr("cx", function(d) {return 800 * Math.random();})
+      .attr("cy", function(d) {return 400 * Math.random();});
+}
+
+setInterval(function(){update()},1000);
+
+// update function
+// enemies inside an update function
+// selectAll enemies and apply a transition
+// setInterval call, with update as an argument
+//
