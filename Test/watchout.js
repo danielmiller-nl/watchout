@@ -6,6 +6,7 @@ var nodes = d3.range(20).map(function() { return {x: ( width * Math.random() ), 
 
 var currentScore = 0;
 var highScore = 0;
+var counter = 0;
 
 var drag = d3.behavior.drag()
     .origin(function(d) { return d; })
@@ -30,26 +31,31 @@ var svgPlayer = d3.select(".container")
 var enemies = gameBoard.selectAll(".enemies")
                   .data(nodes)
                   .enter()
-                .append("circle")
-                  .attr("cx", function(d) {return d.x;})
-                  .attr("cy", function(d) {return d.y;})
-                  .attr("r",radius)
-                  .attr("fill","blue");
-
+                .append("svg:image")
+                  .attr("xlink:href", "http://vignette3.wikia.nocookie.net/naruto/images/4/4d/Shuriken.svg/revision/latest?cb=20121108145307&path-prefix=answers")
+                  .attr("width", 30)
+                  .attr("height", 30)
+                  .attr("x", function(d) {return width * Math.random();})
+                  .attr("y", function(d) {return height * Math.random();})
+                  .attr("class", "enemies")
 
 function collisionDetection(enemy) {
 
-  radiusSum = (parseFloat(enemy.attr('r')) + 10);
-  xDiff = (parseFloat(enemy.attr('cx')) - parseFloat(svgPlayer.attr('cx')));
-  yDiff = (parseFloat(enemy.attr('cy')) - parseFloat(svgPlayer.attr('cy')));
+  radiusSum = 25;
+  xDiff = (parseFloat(enemy.attr('x')) - parseFloat(svgPlayer.attr('cx')));
+  yDiff = (parseFloat(enemy.attr('y')) - parseFloat(svgPlayer.attr('cy')));
 
   separation = Math.sqrt( Math.pow(xDiff,2) + Math.pow(yDiff,2) );
   if (separation < radiusSum) {
     var tempScore = currentScore;
     currentScore = 0;
+    counter++;
     d3.select('.current')
     .select('span')
     .html(currentScore);
+    d3.select('.collisions')
+    .select('span')
+    .html(counter);
     if(tempScore>highScore){
       highScore = tempScore;
       d3.select('.high')
@@ -64,14 +70,14 @@ function collisionDetection(enemy) {
 
 function tweenWithCollisionDetection (enemiesData) {
   var enemy = d3.select(this);
-  var startPos = {x: parseFloat( enemy.attr('cx') ), y: parseFloat( enemy.attr('cy') )};
+  var startPos = {x: parseFloat( enemy.attr('x') ), y: parseFloat( enemy.attr('y') )};
   var endPos = {x: width * Math.random(), y: height * Math.random()};
   return function (t) {
     collisionDetection(enemy);
     var enemyNextPos = {x: startPos.x + (endPos.x - startPos.x)*t, y: startPos.y + (endPos.y - startPos.y)*t};
     enemy
-    .attr('cx', enemyNextPos.x)
-    .attr('cy', enemyNextPos.y);
+    .attr('x', enemyNextPos.x)
+    .attr('y', enemyNextPos.y);
   }
 }
 
