@@ -1,4 +1,3 @@
-// start slingin' some d3 here.
 var radius = 20;
 var width = 800;
 var height = 400;
@@ -42,15 +41,6 @@ function update(){
 }
 
 setInterval(function(){update()},1000);
-
-// update function
-// enemies inside an update function
-// selectAll enemies and apply a transition
-// setInterval call, with update as an argument
-//
-
-
-
 
 function dragmove(d) {
   d3.select(this)
