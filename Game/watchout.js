@@ -1,4 +1,3 @@
-// start slingin' some d3 here.
 var radius = 15;
 var width = 800;
 var height = 400;
@@ -62,9 +61,6 @@ function collisionDetection(enemy) {
         .select('span')
         .html(highScore);
     }
-    //set the game the score to 0
-    //update high score if necessary
-    //then continue to increment score
   }
 }
 
@@ -102,27 +98,3 @@ function increaseScore(){
 }
 
 setInterval(function(){increaseScore()},50);
-
-
-// var shurikens = gameBoard.selectAll(".enemies")
-//                 .data(nodes)
-//                 .enter()
-//                 .append("svg")
-//                   .attr("width", "100.0pt")
-//                   .attr("height", "100.0pt")
-//                 .append("g")
-//                   .attr("cx", function(d) {return d.x;})
-//                   .attr("cy", function(d) {return d.y;})
-//                   .attr("transform", "translate(0.000000,100.000000) scale(0.100000,-0.100000)")
-//                 .append("path")
-//                   .attr("d", "M425 824 c-42 -101 -78 -171 -90 -179 -11 -7 -89 -41 -172 -76 -84 -35 -153 -66 -153 -69 0 -3 73 -36 162 -74 90 -38 168 -74 174 -80 6 -6 42 -84 80 -173 38 -90 71 -163 74 -163 3 0 36 73 74 162 38 90 74 168 80 174 6 6 84 42 174 80 89 38 162 71 162 74 0 3 -69 34 -153 69 -83 35 -161 69 -172 76 -12 8 -48 78 -90 179 -38 91 -72 166 -75 166 -3 0 -36 -75 -75 -166z m148 -265 c26 -32 22 -94 -8 -124 -34 -35 -96 -35 -130 0 -27 26 -34 80 -14 116 26 50 114 54 152 8z")
-
-// var svgPlayer = gameBoard.selectAll(".player")
-//     .data([{x: width / 2, y: height / 2}])
-//     .enter()
-//     .append("circle")
-//     .attr("r", radius)
-//     .attr("cx", function(d) { return d.x; })
-//     .attr("cy", function(d) { return d.y; })
-//     .attr("fill", "red")
-//     .call(drag);
